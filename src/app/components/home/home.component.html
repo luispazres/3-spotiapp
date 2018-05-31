@@ -3,17 +3,15 @@
     {{pais.name}} - {{pais.population | number}}
   </li>
 </ul> -->
+<app-loading *ngIf="loading"></app-loading>
 
-<div class="card-columns">
-  <div class="card" *ngFor="let cancion of nuevas_canciones">
-    <img class="card-img-top" [src]="cancion.images[0].url" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ cancion.name }}</h5>
-      <p class="card-text">
-        <span class="badge badge-pill badge-primary" *ngFor="let artista of cancion.artists">
-          {{ artista.name }}
-        </span>
-      </p>
-    </div>
+  <div *ngIf="error" class="alert alert-danger animated fadeIn" role="alert">
+    <h3>Error</h3>
+    <p>
+      {{ menasaje_error }}
+    </p>
   </div>
-</div>
+
+
+<button type="button" name="button" (click)="traerPaises()">traer Paises</button>
+<app-tarjetas [items]="nuevas_canciones"><app-tarjetas>
